@@ -1,5 +1,6 @@
 ---
 title: "AssessmentPart1"
+Author: "Qi Liu"
 output: html_document
 ---
 
@@ -62,3 +63,16 @@ qtm(london_osm1) +
 ```{r}
 knitr::include_graphics('C:/Users/lenovo/Desktop/New folder/UCL/GIS/AssessmentPart1/GIS_Assessment/ArcGIS.jpg')
 ```
+
+## Commentary
+
+# Introduction
+Mapping and cartography can be achieved through different methods at present. The main software that used in this process can be divided into GUI-based piece of GIS software and code-based piece. This part will focus on critically justifying the benefits and drawbacks of two main representatives of software ArcGIS and RStudio, and comparing the differences between them.
+# Cartographic Workflows Review
+As for ArcGIS workflows, it requires shp format data to be used as a base map. And then various formats data like csv can be used to fill the data and display on a map. In this work, London boundary data was used as the base map. Then the economic activity numbers in London ward data was joined with the map layer and was plotted as quantile style. Another data was the residents commuting flows that presented as scatter plots on map. Finally, through layout view function, legend, scale bar and compass were added.
+In RStudio, the same data sources were used and the workflows mainly focus on editing data in the table. The map can be plot easily through tmap function. More functions can be implemented in one step through writing the code.
+# Assessment of GUI and Command line generated maps
+ArcGIS is a powerful analysis tool that can present great geographic information. The cartographic processing is easily navigable. One evidence shows that is the ‘search’ function, which is convenient for people to find each tool and also has well-described content. The data sources mainly concentrate on shp files. Other formats are also acceptable but require transforming. The finished product can be read clearly and easily to change any properties. In this map, it shows the relationship between economic activities and commuting residents. It can be seen that the areas which have more economic activities will accompanied by more commuting residents. In total, through clicking on different parts of the screen, the map can be produced quickly. However, when the scale of database is too large, the ArcGIS will show the map very slowly and it may take a lot of time.
+As for R, a programming language designed for data manipulation and statistics, is more complex but has powerful functions. It mainly relies on the command line for data input. It has a number of writable code packages and can be updated fast over time. Moreover, it can also support lots of format data. One great advantage is that it can read data from the Internet directly and not require downloaded forwards to the computer. In addition, R could do something on the command line use less of time rather than do it with a GUI. Therefore, RStudio is more flexible. But a huge disadvantage is that this software may be unstable, which means that it may stop working due to lots of workload or meet with errors easily on different computers.
+# Conclusion
+In conclusion, GUI-based piece of GIS software provides the ability to display and understand representations more easily. However, it is difficult to process large capacity data sources. As for code-based piece software like RStudio, has tremendous flexibility and power and can saving time in the long-term. But it may also be difficult to operate and unstable in some situations.
