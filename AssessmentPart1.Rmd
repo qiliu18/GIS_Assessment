@@ -1,0 +1,64 @@
+---
+title: "AssessmentPart1"
+output: html_document
+---
+
+## R Code and Map
+
+```{r}
+install.packages("maptools")
+install.packages("RColorBrewer")
+install.packages("classInt")
+install.packages("OpenStreetMap")
+install.packages("sp")
+install.packages("rgeos")
+install.packages("tmap")
+install.packages("sf")
+install.packages("rgdal")
+install.packages("geojsonio")
+library(maptools)
+library(RColorBrewer)
+library(classInt)
+library(OpenStreetMap)
+library(sp)
+library(rgeos)
+library(tmap)
+library(tmaptools)
+library(sf)
+library(rgdal)
+library(geojsonio)
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+Londoncommuting<- read.csv("C:/Users/lenovo/Desktop/New folder/UCL/GIS/Assignment 1/commuting-patterns-borough.csv", header = TRUE, sep = ",")
+Londonwarddata<- read.csv("C:/Users/lenovo/Desktop/New folder/UCL/GIS/Assignment 1/ward-atlas-data_iadatasheet.csv", header = TRUE, sep = ",")
+BoroughMapSF1 <- read_shape("C:/Users/lenovo/Desktop/New folder/UCL/GIS/wk1/BoundaryData/england_lad_2011.shp", as.sf = TRUE)
+BoroughMapSF2 <- read_shape("C:/Users/lenovo/Desktop/New folder/UCL/GIS/Assignment 1/statistical-gis-boundaries-london/ESRI/London_Ward_CityMerged.shp", as.sf = TRUE)
+BoroughDataMap1 <- append_data(BoroughMapSF1,Londoncommuting, key.shp = "name", key.data = "Origin.Area", ignore.duplicates = TRUE)
+BoroughDataMap2 <- append_data(BoroughMapSF2,Londonwarddata, key.shp = "GSS_CODE", key.data = "Ward", ignore.duplicates = TRUE)
+london_osm1 <- read_osm(BoroughDataMap1, type = "esri", zoom = NULL)
+qtm(london_osm1) +
+  tm_shape(BoroughDataMap2) + 
+  tm_polygons("Employment.Economic.Activity..Numbers....2011.Census.Economically.active..Total", 
+              style="quantile",
+              palette="Purples",
+              midpoint=NA,
+              title="Economic Activity",
+              alpha = 0.5) + 
+  tm_shape(BoroughDataMap1) + 
+  tm_dots("Residents.commuting..excludes.home.workers.", 
+          style="quantile",
+          size=0.5,
+          col="orange", 
+          shapeNA = NA, 
+          title = "Residents Commuting")+ 
+  tm_compass(position = c("left", "bottom"),type = "arrow") + 
+  tm_scale_bar(position = c("left", "bottom")) +
+  tm_layout(title = "Economic Activity and Residents Commuting Numbers", legend.position = c("right", "bottom"))
+```
+
+## ArcGIS Map
+
+```{r}
+knitr::include_graphics('C:/Users/lenovo/Desktop/New folder/UCL/GIS/AssessmentPart1/GIS_Assessment/ArcGIS.jpg')
+```
